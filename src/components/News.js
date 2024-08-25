@@ -25,12 +25,12 @@ export default class News extends Component {
     }
     async componentDidMount() {
         this.props.setProgress(10);
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b5de4b041c844f049f2f5f55388a58d8&page=1&pagesize=6` ;
+        let url = `https://api.thenewsapi.com/v1/news/all?api_token=RzIWcavYMF7GrXiDS3kx7cfhAPDonjvyf06z2zSI&categories=${this.props.category}&language=en` ;
         this.props.setProgress(40);
-        let data = await fetch(url);
+        let Data = await fetch(url);
         this.props.setProgress(70);
-        let finalData = await data.json();
-        this.setState({articles:finalData.articles, totalResults: finalData.totalResults});
+        let finalData = await Data.json();
+        this.setState({articles:finalData.data, totalResults: finalData.totalResults});
         this.props.setProgress(100);
     }
 
@@ -50,7 +50,7 @@ export default class News extends Component {
 
     async fetchData(pageNo){
         this.props.setProgress(10);
-            let url= `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=b5de4b041c844f049f2f5f55388a58d8&page=${pageNo}&pagesize=6`;
+            let url= `https://api.thenewsapi.com/v1/news/all?api_token=RzIWcavYMF7GrXiDS3kx7cfhAPDonjvyf06z2zSI&categories=${this.props.category}&language=en&page=${pageNo}&pagesize=6`;
             this.setState({loading:true});
             let data= await fetch (url);
             this.props.setProgress(50);
@@ -58,7 +58,7 @@ export default class News extends Component {
             this.props.setProgress(70);
             this.setState({
                 page: pageNo,
-                articles: parsedData.articles,
+                articles: parsedData.data,
                 loading:false
             })
             this.props.setProgress(100);
@@ -75,7 +75,7 @@ export default class News extends Component {
                     <div className="row">
                         {this.state.articles.map((element)=>{
                             return <div className="col-md-4 my-3" key={element.url}>
-                            {!this.state.loading &&<NewsItem title={element.title} discription={element.description} imageurl={!element.urlToImage?"https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2160563450.jpg?c=16x9&q=w_800,c_fill":element.urlToImage} url ={element.url} publishedAt={element.publishedAt} source={element.source.name}/>}
+                            {!this.state.loading &&<NewsItem title={element.title} discription={element.description} imageurl={!element.image_url?"https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2160563450.jpg?c=16x9&q=w_800,c_fill":element.image_url} url ={element.url} publishedAt={element.published_at} source={element.source}/>}
                         </div>
                         })}    
                     </div>
