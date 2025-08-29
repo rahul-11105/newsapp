@@ -1,9 +1,9 @@
 import './App.css';
-
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import News from './components/News';
 import LoadingBar from 'react-top-loading-bar';
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -35,6 +35,8 @@ export default class App extends Component {
           />
           
           <Routes>
+          <Route exact path="/" element={<News  setProgress={this.setProgress}  key="general" country='us' category='general'/>} />
+
             <Route exact path="/business" element={<News  setProgress={this.setProgress}  key="business" country='us' category='business' />} />
             <Route exact path="/entertainment" element={<News  setProgress={this.setProgress}  key="entertainment" country='us' category='entertainment' />} />
             <Route exact path="/general" element={<News  setProgress={this.setProgress}  key="general" country='us' category='general' />} />
