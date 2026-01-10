@@ -26,10 +26,10 @@ The application fetches live news data from an external News API and presents it
 ---
 
 ## 📸 Screenshots
-_Add screenshots showing:_
-- Home page
-- Category-wise news
+-Category-wise news
+<img width="1883" height="975" alt="Screenshot 2026-01-10 170009" src="https://github.com/user-attachments/assets/ee9730e6-2f73-4655-b6fe-ca7c38fa845e" />
 - Responsive mobile view
+<img width="1145" height="915" alt="image" src="https://github.com/user-attachments/assets/2af6f82e-5716-44f0-9270-877af2bb79c4" />
 
 ---
 
